@@ -140,3 +140,4 @@ C:\Users\matey\source\repos\ToDoApi\ToDoApi\obj\Debug\net8.0\refint\ToDoApi.dll
 C:\Users\matey\source\repos\ToDoApi\ToDoApi\obj\Debug\net8.0\ToDoApi.pdb
 C:\Users\matey\source\repos\ToDoApi\ToDoApi\obj\Debug\net8.0\ToDoApi.genruntimeconfig.cache
 C:\Users\matey\source\repos\ToDoApi\ToDoApi\obj\Debug\net8.0\ref\ToDoApi.dll
+C:\Users\matey\source\repos\ToDoApi\ToDoApi\obj\Debug\net8.0\ToDoApi.sourcelink.json

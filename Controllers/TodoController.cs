@@ -19,7 +19,7 @@ namespace ToDoApi.Controllers
         [Route("getTodos")]
         public async Task<IActionResult> GetAll()
         {
-            var todos = await _context.Todos.ToListAsync();
+            var todos = await _context.Todos.FromSql($"GetTodos").ToListAsync();
             return Ok(todos);
         }
 
