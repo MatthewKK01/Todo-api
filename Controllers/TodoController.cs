@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Data;
+using System.Reflection.Metadata;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using ToDoApi.Models;
 
@@ -27,7 +30,7 @@ namespace ToDoApi.Controllers
         [Route("addTodo")]
         public async Task<IActionResult> AddTodo([FromBody] ToDo newTodo)
         {
-            await _context.AddAsync(newTodo);
+            await _context.Database.ExecuteSqlAsync($"PostTodo {newTodo.Id}, {newTodo.Title},{newTodo.Content},{newTodo.IsDone}");
             await _context.SaveChangesAsync();
             return Ok(newTodo);
         }
@@ -49,16 +52,15 @@ namespace ToDoApi.Controllers
              await _context.SaveChangesAsync();
              return Ok(myTodo);
         }
-        
+         
 
         [HttpDelete]
         [Route("deleteTodo/{id}")]
-        public async Task<IActionResult> DeleteTodo([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteTodo([FromRoute] Guid id) 
         {
-            var todo = await _context.FindAsync<ToDo>(id);
-            _context.Remove(todo);
-            await _context.SaveChangesAsync();
-            return Ok();
+            var parameter = new SqlParameter("@Id", id);
+            await _context.Database.ExecuteSqlRawAsync("EXEC DeleteTodo @Id", parameter);
+            return Ok(new { Message = "Todo item deleted successfully." });
         }
     }
 }

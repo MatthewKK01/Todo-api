@@ -13,6 +13,6 @@ namespace ToDoApi.Models
         public string Content { get; set; }
 
         [DefaultValue(false)]
-        public bool IsDone { get; set; }
+        public bool IsDone { get; set; } = false;
     }
 }
